@@ -1,0 +1,6 @@
+Directories and info
+We try to avoid having too many write events on the main SD card.
+
+/home/pi/Scripts # Used for storing scripts
+/media/pi/USB32/ # USB memory for frequent writes
+/media/pi/USB32SYNC/ # USB memory for syncing
