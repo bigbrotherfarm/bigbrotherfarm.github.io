@@ -93,9 +93,9 @@
 
 <hr>
 
-<p>Syncthing woes section<br>
+<p>Syncthing woes section:<br>
   As mentioned before I'm using Syncthing for sending photos and other data to the devices and computers elsewhere. Syncthing is great when it works but when it doesn't work it really sucks and causes problems.<br><br>
-  My rapid update folder with images from the last hour gets errors all the time. The Syncthing dashboard also claims that it is "Out of sync" and "isn't making progress" although there shouldn't be any apparent reason for this. It does still work somehow and usually has images from roughly the last hour in it. I have a bash script on the master server deleting any images that are older than an hour and in that folder (apparently this is why Syncthing goes haywire). My most resent problem is this: images from random days from the last month just won't go away. Deleting them on all the devices doesn't help. They just keep coming back! Also checking the list of out of sync files from the Syncthing dashboard shows a bunch of files from last month that "being synced". Due to my bash script those files should no longer exist! Currently my devices are eternally trying to sync a backlog of 60000+ non existing files!<br><br> 
+  My rapid update folder with images from the last hour gets errors all the time. The Syncthing dashboard also claims that it is "Out of sync" and "isn't making progress" but there is no clear reason for this. The folder still works somehow and usually has images from roughly the last hour in it. I have a bash script on the master server deleting any images that are older than an hour and in that folder (apparently this is why Syncthing goes haywire). My most recent problem is this: images from random days from the last month just won't go away. Deleting them on all the devices doesn't help. They just keep coming back! Also checking the list of out of sync files from the Syncthing dashboard shows a bunch of files from last month that "being synced". Due to my bash script those files should no longer exist! Currently my devices are eternally trying to sync a backlog of 60000+ non existing files!<br><br> 
   I have come to the conclusion that a faster folder rescan interval would probably remove these issues but that setting doesn't work well either. No matter what you change the folder rescan interval.. it will always revert back to 3600 seconds.<br><br>
   Also the exclusion of MacOS .DS_Store files doen't work. They just keep on reappearing.
 </p>
@@ -106,6 +106,8 @@
 <ul>
   <li>Zyxel LTE3301 broadcasts 802.11bgn by default. Raspberry Pi cannot see this kind of a wifi network. I switched it to 802.11gn and now it works. Well.. b is too outdated anyway.</li>
 </ul></p>
+
+<hr>
 
 <p>Security impact so far:
 <ul>
