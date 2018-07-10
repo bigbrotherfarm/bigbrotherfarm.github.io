@@ -7,7 +7,7 @@
 <h1>Big Brother Farm</h1>
 <p>This project is about securing and wiring up a big farm. A quite large farm in northern Europe recently became my reponsibility. My first task is to secure it as I am not there every day. First step is to use security cameras etc. Second step is to improve the setup. Third step is to setup a fully autonomous drone surveillance system where drones take off on their own and land to charge. This takes inspiration from the cold war when Americans always had at least one B-52 airborne. Anyway, let's get back to step one which is described on this page. There are a thousand and one pieces to this project so this might take a while...</p>
 <hr>
-<p>Ingredients:
+<p><b>Ingredients:</b>
 <ul>
   <li>Router with SIM slot</li>
   <li>SIM card</li>
@@ -33,7 +33,7 @@
   <li>UPS</li>
 </ul></p>
 
-<p>Raspberry Pi scripts etc:
+<p><b>Raspberry Pi scripts etc:</b>
 <ul>
   <li>Startup script</li>
   <li>Syncthing</li>
@@ -49,7 +49,7 @@
   <li>Trigger scripts</li>
 </ul></p>
 
-<p>Command and control server scripts:
+<p><b>Command and control server scripts:</b>
 <ul>
   <li>SSL connection</li>
   <li>Uptime receiver system</li>
@@ -57,7 +57,7 @@
   <li>Page for latest photos?</li>
 </ul></p>
 
-<p>Home base Raspberry Pi:
+<p><b>Home base Raspberry Pi:</b>
 <ul>
   <li>Syncthing</li>
   <li>Folders for storing stuff locally. Also for nightly zips which are copied to Synced folders.</li>
@@ -66,7 +66,7 @@
   <li>Active Syncthing folder for camera photos from the last hour.</li>
 </ul></p>
 
-<p>Mobile device:
+<p><b>Mobile device:</b>
 <ul>
   <li>Syncthing</li>
   <li>Home screen shortcuts to Syncthing folders (Android)</li>
@@ -74,7 +74,7 @@
 
 <hr>
 
-<p>Current network topology:
+<p><b>Current network topology:</b>
 <ul>
   <li>Zyxel LTE3301 and a 4G LTE SIM card used for the internet connection.</li>
   <li>Raspberry Pi 3 used as an internal server.</li>
@@ -86,7 +86,7 @@
 
 <hr>
 
-<p>Things that don't seem to work:
+<p><b>Things that don't seem to work:</b>
 <ul>
   <li>Running fswebcam via a cron job on the Raspberry Pi (+ USB camera) seems to freeze the whole system after an hour. USB camera setup will be dealt with later in the future.</li>
   <li>Recording audio using arecord and a USB microphone doesn't work as advertised. Something wrong with the syntax. Will be dealt with later when I have the time to read the man pages for the 27th time.</li>
@@ -94,7 +94,7 @@
 
 <hr>
 
-<p>Syncthing woes section:<br>
+<p><b>Syncthing woes section:</b><br>
   As mentioned before I'm using Syncthing for sending photos and other data to the devices and computers elsewhere. Syncthing is great when it works but when it doesn't work it really sucks and causes problems.<br><br>
   My rapid update folder with images from the last hour gets errors all the time. The Syncthing dashboard also claims that it is "Out of sync" and "isn't making progress" but there is no clear reason for this. The folder still works somehow and usually has images from roughly the last hour in it. I have a bash script on the master server deleting any images that are older than an hour and in that folder (apparently this is why Syncthing goes haywire). My most recent problem is this: images from random days from the last month just won't go away. Deleting them on all the devices doesn't help. They just keep coming back! Also checking the list of out of sync files from the Syncthing dashboard shows a bunch of files from last month that "being synced". Due to my bash script those files should no longer exist! Currently my devices are eternally trying to sync a backlog of 70000+ non existing files!<br><br> 
   I have come to the conclusion that a faster folder rescan interval would probably remove these issues but that setting doesn't work well either. No matter what you change the folder rescan interval to.. it will always revert back to 3600 seconds!<br><br>
@@ -103,14 +103,14 @@
 
 <hr>
 
-<p>Problems solved:
+<p><b>Problems solved:</b>
 <ul>
   <li>Zyxel LTE3301 broadcasts 802.11bgn by default. Raspberry Pi cannot see this kind of a wifi network. I switched it to 802.11gn and now it works. Well.. b is too outdated anyway.</li>
 </ul></p>
 
 <hr>
 
-<p>Security impact so far:
+<p><b>Security impact so far:</b>
 <ul>
   <li>Several uninvited cars and individuals have visited the farm. In the countryside word travels fast that there is a house unattended. What I did was I uploaded some of the security camera videos as unlisted videos to YouTube and sent the links to the neighbors. This did the trick. The word got around again and uninvited visits have stopped for now. Let's see how this continues.</li>
 </ul></p>
