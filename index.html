@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Big Brother Farm</h1>
-<p>This project is about securing and wiring up a big farm.</p>
+<p>This project is about securing and wiring up a big farm. A quite large farm in northern Europe recently became my reponsibility. My first task is to secure it as I am not there every day. First step is to use security cameras etc. Second step is to improve the setup. Third step is to setup a fully autonomous drone surveillance system where drones take off on their own and land to charge. This takes inspiration from the cold war when Americans always had at least one B-52 airborne. Anyway, let's get back to step one which is described on this page. There are a thousand and one pieces to this project so this might take a while...</p>
 <hr>
 <p>Ingredients:
 <ul>
@@ -15,19 +15,22 @@
   <li>Yagi antenna?</li>
   <li>Outdoor IP cameras</li>
   <li>Indoor IP cameras</li>
+  <li>Wifi range extenders</li>
   <li>USB memory (multiple)</li>
   <li>USB camera</li>
   <li>USB microphone</li>
   <li>Raspberry Pi (multiple?)</li>
   <li>Floodlights</li>
-  <li>Motion sensors?</li>
-  <li>Styrofoam box</li>
+  <li>Motion sensors</li>
+  <li>Styrofoam box (for keeping the router and Raspberry Pi warm during winter.)</li>
   <li>Storage boxes</li>
   <li>Electrical timer switch</li>
   <li>Cables</li>
   <li>Warning signs</li>
-  <li>Fake things</li>
+  <li>Fake things (cameras etc.)</li>
   <li>Baits</li>
+  <li>Honeypot wifi networks (For example Starbucks wifi, free airport wifi, etc.. anything that a bad guy might have configured on the phone.)</li>
+  <li>UPS</li>
 </ul></p>
 
 <p>Raspberry Pi scripts etc:
@@ -50,14 +53,17 @@
 <ul>
   <li>SSL connection</li>
   <li>Uptime receiver system</li>
-  <li>Remote command text file</li>
+  <li>Remote command text file (not yet fully implemented)</li>
   <li>Page for latest photos?</li>
 </ul></p>
 
 <p>Home base Raspberry Pi:
 <ul>
   <li>Syncthing</li>
+  <li>Folders for storing stuff locally. Also for nightly zips which are copied to Synced folders.</li>
+  <li>Folders for syncing to other devices via Syncthing</li>
   <li>Organizer scripts</li>
+  <li>Active Syncthing folder for camera photos from the last hour.</li>
 </ul></p>
 
 <p>Mobile device:
@@ -68,10 +74,42 @@
 
 <hr>
 
+<p>Current network topology:
+<ul>
+  <li>Zyxel LTE3301 and a 4G LTE SIM card used for the internet connection.</li>
+  <li>Raspberry Pi 3 used as an internal server.</li>
+  <li>One low resolution IP camera that uploads photos over FTP to the Raspberry Pi.</li>
+  <li>Two high resolution IP cameras that upload photos over FTP to the Raspberry Pi.</li>
+  <li>Syncthing syncs everything from the Raspberry Pi to the world and SSH scp scripts upload a latest photo to a web server elsewhere. Please see a later section called "Syncthing woes" for more.</li>
+</ul></p>
+
+<hr>
+
 <p>Things that don't seem to work:
 <ul>
   <li>Running fswebcam via a cron job on the Raspberry Pi (+ USB camera) seems to freeze the whole system after an hour. USB camera setup will be dealt with later in the future.</li>
-  <li>Recording audio using arecord and a USB microphone doesn't work as advertised. Something wrong with the syntax. Will be dealt with later.</li>
+  <li>Recording audio using arecord and a USB microphone doesn't work as advertised. Something wrong with the syntax. Will be dealt with later when I have the time to read the man pages for the 27th time.</li>
+</ul></p>
+
+<hr>
+
+<p>Syncthing woes section<br>
+  As mentioned before I'm using Syncthing for sending photos and other data to the devices and computers elsewhere. Syncthing is great when it works but when it doesn't work it really sucks and causes problems.<br><br>
+  My rapid update folder with images from the last hour gets errors all the time. The Syncthing dashboard also claims that it is "Out of sync" and "isn't making progress" although there shouldn't be any apparent reason for this. It does still work somehow and usually has images from roughly the last hour in it. I have a bash script on the master server deleting any images that are older than an hour and in that folder (apparently this is why Syncthing goes haywire). My most resent problem is this: images from random days from the last month just won't go away. Deleting them on all the devices doesn't help. They just keep coming back! Also checking the list of out of sync files from the Syncthing dashboard shows a bunch of files from last month that "being synced". Due to my bash script those files should no longer exist! Currently my devices are eternally trying to sync a backlog of 60000+ non existing files!<br><br> 
+  I have come to the conclusion that a faster folder rescan interval would probably remove these issues but that setting doesn't work well either. No matter what you change the folder rescan interval.. it will always revert back to 3600 seconds.<br><br>
+  Also the exclusion of MacOS .DS_Store files doen't work. They just keep on reappearing.
+</p>
+
+<hr>
+
+<p>Problems solved:
+<ul>
+  <li>Zyxel LTE3301 broadcasts 802.11bgn by default. Raspberry Pi cannot see this kind of a wifi network. I switched it to 802.11gn and now it works. Well.. b is too outdated anyway.</li>
+</ul></p>
+
+<p>Security impact so far:
+<ul>
+  <li>Several uninvited cars and individuals have visited the farm. In the countryside word travels fast that there is a house unattended. What I did was I uploaded some of the security camera videos as unlisted videos to YouTube and sent the links to the neighbors. This did the trick. The word got around again and uninvited visits have stopped for now. Let's see how this continues.</li>
 </ul></p>
 
 </body>
